@@ -1,11 +1,12 @@
 package pl.mmm.persistence;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import pl.mmm.model.entities.Insurance;
-import org.springframework.data.repository.CrudRepository;
 
-public interface InsuranceRepository extends CrudRepository<Insurance,Long> {
-    Insurance getInsuranceById(long id);
+@Repository
+public interface InsuranceRepository extends JpaRepository<Insurance, Long> {
 
-    void saveInsurance(Insurance insurance);
+    void findInsuranceById(long id);
 
 }

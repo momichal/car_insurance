@@ -1,9 +1,14 @@
 package pl.mmm.services;
 
+import pl.mmm.model.entities.Car;
 import pl.mmm.model.entities.Client;
-import pl.mmm.model.entities.ClientCar;
+
+import java.util.List;
 
 public interface ClientService {
     void addNewClient(Client client);
-    void assignCarToClient(Client client, ClientCar clientCar);
+
+    Client getClientById(long id);
+
+    List<Client> getAllClients();
 }
