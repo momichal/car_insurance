@@ -1,9 +1,10 @@
 package pl.mmm.persistence;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import pl.mmm.model.entities.Client;
-import org.springframework.data.repository.CrudRepository;
 
-public interface ClientRepository extends CrudRepository<Client,Long>{
-    Client getClientById(long id);
-    void saveClient(Client client);
+@Repository
+public interface ClientRepository extends JpaRepository<Client, Long> {
+    Client findClientById(long id);
 }
