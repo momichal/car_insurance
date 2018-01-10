@@ -8,6 +8,7 @@ class InsuranceFactors {
     private final BigDecimal engineRatio;
     private final BigDecimal totalReduceRatio;
     private final BigDecimal carAgeRatio;
+    private final BigDecimal percentage;
 
     InsuranceFactors(Builder builder) {
         baseCosts = builder.baseCosts;
@@ -15,7 +16,10 @@ class InsuranceFactors {
         engineRatio = builder.engineRatio;
         totalReduceRatio = builder.totalReduceRatio;
         carAgeRatio = builder.carAgeRatio;
+        percentage = builder.percentage;
     }
+
+    public BigDecimal getPercentage() { return percentage; }
 
     public BigDecimal getBaseCosts() {
         return baseCosts;
@@ -43,6 +47,7 @@ class InsuranceFactors {
         private BigDecimal engineRatio = BigDecimal.ZERO;
         private BigDecimal totalReduceRatio = BigDecimal.ZERO;
         private BigDecimal carAgeRatio = BigDecimal.ZERO;
+        private BigDecimal percentage = BigDecimal.ZERO;
 
         public Builder baseCosts(double value) {
             baseCosts = new BigDecimal(value);
@@ -66,6 +71,11 @@ class InsuranceFactors {
 
         public Builder carAgeRatio(double value) {
             carAgeRatio = new BigDecimal(value);
+            return this;
+        }
+
+        public Builder percentage(double value) {
+            percentage = new BigDecimal(value);
             return this;
         }
 

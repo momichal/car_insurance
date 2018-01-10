@@ -7,37 +7,38 @@ import java.math.BigDecimal;
 import static org.junit.Assert.assertEquals;
 
 public class InsuranceCalcACTest {
-    private double estimatedCarPrice = 1000.0;
-    private double baseCost = 500;
-    private double percentage = 0.05;
     private InsuranceCalc calc = new InsuranceCalcAC();
+    private double estimatedCarPrice = 1000.0;
+    private double percentage = 5.0;
 
     @Test
     public void calculatePercentCosts() throws Exception {
         InsuranceFactors factors = new InsuranceFactors.Builder()
                 .estimatedCarPrice(estimatedCarPrice)
+                .percentage(percentage)
                 .build();
 
         BigDecimal result = calc.calculateInsuranceCosts(factors);
 
-        assertEquals(percentage * estimatedCarPrice, result.doubleValue(), 0.01);
+        assertEquals(percentage * 0.01 * estimatedCarPrice, result.doubleValue(), 0.01);
     }
 
 
     @Test
     public void calculateACCosts() throws Exception {
+        double baseCost = 500.0;
         InsuranceFactors factors = new InsuranceFactors.Builder()
-                .estimatedCarPrice(estimatedCarPrice)
                 .baseCosts(baseCost)
+                .estimatedCarPrice(estimatedCarPrice)
+                .percentage(percentage)
                 .build();
 
         BigDecimal result = calc.calculateInsuranceCosts(factors);
-
-        assertEquals(baseCost+ (percentage* estimatedCarPrice), result.doubleValue(), 0.01);
+        assertEquals(baseCost + (percentage * 0.01 * estimatedCarPrice), result.doubleValue(), 0.01);
     }
 
 
-    }
+}
 
 
 

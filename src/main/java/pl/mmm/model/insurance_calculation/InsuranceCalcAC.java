@@ -11,9 +11,13 @@ public class InsuranceCalcAC implements InsuranceCalc {
 
         BigDecimal totalCost = BigDecimal.ZERO;
         totalCost = totalCost.add(baseCosts);
-        BigDecimal percentage = BigDecimal.valueOf(0.05);
-        totalCost = totalCost.add(estimatedCarPrice.multiply(percentage));
-
+        BigDecimal percentage = factors.getPercentage();
+        BigDecimal ratio = convertPercentageToRatio(percentage);
+        totalCost = totalCost.add(estimatedCarPrice.multiply(ratio));
         return totalCost;
+    }
+
+    private BigDecimal convertPercentageToRatio(BigDecimal percentage) {
+        return new BigDecimal("0.01").multiply(percentage);
     }
 }

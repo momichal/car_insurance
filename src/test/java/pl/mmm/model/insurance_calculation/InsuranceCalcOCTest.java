@@ -24,8 +24,8 @@ public class InsuranceCalcOCTest {
         InsuranceFactors factors = new InsuranceFactors.Builder()
                 .baseCosts(baseCosts)
                 .build();
-        BigDecimal result = calc.calculateInsuranceCosts(factors);
 
+        BigDecimal result = calc.calculateInsuranceCosts(factors);
         assertEquals(baseCosts, result.doubleValue(), 0.01);
     }
 
@@ -36,6 +36,7 @@ public class InsuranceCalcOCTest {
                 .baseCosts(baseCosts)
                 .engineRatio(0.25)
                 .build();
+
         BigDecimal result = calc.calculateInsuranceCosts(factors);
         double expected = baseCosts + baseCosts * engineRatio;
         assertEquals(expected, result.doubleValue(), 0.01);
@@ -48,6 +49,7 @@ public class InsuranceCalcOCTest {
                 .baseCosts(baseCosts)
                 .carAgeRatio(carAgeRatio)
                 .build();
+
         BigDecimal result = calc.calculateInsuranceCosts(factors);
         double expected = baseCosts + baseCosts * carAgeRatio;
         assertEquals(expected, result.doubleValue(), 0.01);
@@ -60,6 +62,7 @@ public class InsuranceCalcOCTest {
                 .baseCosts(baseCosts)
                 .totalReduceRatio(totalReduceRatio)
                 .build();
+
         BigDecimal result = calc.calculateInsuranceCosts(factors);
         double expected = baseCosts - baseCosts * totalReduceRatio;
         assertEquals(expected, result.doubleValue(), 0.01);
@@ -76,13 +79,12 @@ public class InsuranceCalcOCTest {
                 .carAgeRatio(carAgeRatio)
                 .totalReduceRatio(totalReduceRatio)
                 .build();
-        BigDecimal result = calc.calculateInsuranceCosts(factors);
 
+        BigDecimal result = calc.calculateInsuranceCosts(factors);
         double expectedTotal = baseCosts;
         expectedTotal += baseCosts * carAgeRatio;
         expectedTotal += expectedTotal * engineRatio;
         expectedTotal -= expectedTotal * totalReduceRatio;
-
         assertEquals(expectedTotal, result.doubleValue(), 0.01);
     }
 
